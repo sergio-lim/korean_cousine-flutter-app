@@ -2,9 +2,7 @@ import 'package:cocina_coreana/app/lib/domain/data/meals_data.dart';
 import 'package:cocina_coreana/app/lib/widgets/minimalist_decoration_widget/minimalist_decoration_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:convert';
 
-/// Displays detailed information about a SampleItem.
 class MealDetailScreenView extends StatefulWidget {
   final int mealIndex;
   const MealDetailScreenView({super.key, required this.mealIndex});

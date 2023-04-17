@@ -1,5 +1,6 @@
 import 'package:cocina_coreana/app/lib/domain/data/meals_data.dart';
 import 'package:cocina_coreana/app/lib/domain/models/meal.dart';
+import 'package:cocina_coreana/app/lib/pages/meal_views/meal_detail_screen.dart';
 import 'package:cocina_coreana/app/lib/widgets/minimalist_decoration_widget/minimalist_decoration_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -17,6 +18,7 @@ class _FavoritesViewState extends State<FavoritesView> {
   int mealIx = 0;
   bool isListEmpty = false;
   List<String> favoriteMeals = [];
+  String mealIdx = '';
 
   @override
   void initState() {
@@ -66,7 +68,17 @@ class _FavoritesViewState extends State<FavoritesView> {
                 final mealId = favoriteMeals[index];
                 final meal = _meals.firstWhere((meal) => meal.id == mealId);
                 return TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    mealIdx = meal.id!;
+                    mealIx =
+                        meals.indexWhere((element) => element.id == mealId);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              MealDetailScreenView(mealIndex: mealIx)),
+                    );
+                  },
                   child: Container(
                     decoration: minimalistDecoration,
                     child: Stack(

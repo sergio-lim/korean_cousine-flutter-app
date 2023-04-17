@@ -13,6 +13,7 @@ class _FiltersViewState extends State<FiltersView> {
   bool isCheap = false;
   bool isSimple = false;
   bool isFast = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
