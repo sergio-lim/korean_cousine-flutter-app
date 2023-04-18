@@ -32,6 +32,7 @@ class _SelectedCategoryState extends State<SelectedCategory> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
         title: Text(
           widget.selectedName,
           style: const TextStyle(color: Colors.black),

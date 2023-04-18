@@ -37,8 +37,14 @@ class _MealDetailScreenViewState extends State<MealDetailScreenView> {
     }
     ingredientsList = meals[widget.mealIndex].ingredients!;
     stepsList = meals[widget.mealIndex].steps!;
+
+    if (favoriteMeals.contains(meals[widget.mealIndex].id)) {
+      isFavorite = true;
+    }
     return Scaffold(
       appBar: AppBar(
+        actionsIconTheme: const IconThemeData(color: Colors.black),
+        foregroundColor: Colors.black,
         title: Text(
           meals[widget.mealIndex].title!,
           style: const TextStyle(color: Colors.black),
@@ -71,7 +77,8 @@ class _MealDetailScreenViewState extends State<MealDetailScreenView> {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
-              child: Image.asset(meals[widget.mealIndex].imageUrl!),
+              child: Image.asset(meals[widget.mealIndex].imageUrl!,
+                  height: MediaQuery.of(context).size.height * 0.8),
             ),
             Container(
               height: 30,
