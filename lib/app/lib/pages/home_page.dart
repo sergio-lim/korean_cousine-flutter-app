@@ -21,14 +21,16 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          foregroundColor: Colors.black,
-          title: Text(
-            homeIndex[currentIndex],
-            style: const TextStyle(color: Colors.black),
-          ),
-        ),
+        appBar: currentIndex == 0
+            ? null
+            : AppBar(
+                backgroundColor: Colors.white,
+                foregroundColor: Colors.black,
+                title: Text(
+                  homeIndex[currentIndex],
+                  style: const TextStyle(color: Colors.black),
+                ),
+              ),
         body: DoubleBackToCloseApp(
           snackBar: const SnackBar(content: Text('Toca dos veces para salir')),
           child:

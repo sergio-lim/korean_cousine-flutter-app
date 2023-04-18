@@ -1,3 +1,6 @@
+import 'package:cocina_coreana/app/lib/domain/data/meals_data.dart';
+import 'package:cocina_coreana/app/lib/domain/models/meal.dart';
+import 'package:cocina_coreana/app/lib/pages/meal_views/meal_detail_screen.dart';
 import 'package:cocina_coreana/app/lib/widgets/minimalist_decoration_widget/minimalist_decoration_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -13,97 +16,144 @@ class _FiltersViewState extends State<FiltersView> {
   bool isCheap = false;
   bool isSimple = false;
   bool isFast = false;
+  int mealIx = 0;
+  bool anyFilterOn = false;
+  String? mealId = '';
+  List<Meal> _filteredMeals() {
+    return meals.where((meal) {
+      return (!isSpicy || meal.isSpicy!) &&
+          (!isCheap || meal.isCheap!) &&
+          (!isSimple || meal.isSimple!) &&
+          (!isFast || meal.isFast!);
+    }).toList();
+  }
 
   @override
   Widget build(BuildContext context) {
+    if (isCheap || isFast || isSimple || isSpicy) {
+      anyFilterOn = true;
+    }
     return Scaffold(
-      backgroundColor: Colors.grey[300],
-      body: Center(
-        child: Container(
-          decoration: minimalistDecoration,
-          height: MediaQuery.of(context).size.height * 0.6,
-          width: MediaQuery.of(context).size.width * 0.6,
+        backgroundColor: Colors.grey[300],
+        appBar: AppBar(
+          title: const Text(
+            'Filtros',
+            style: TextStyle(color: Colors.black),
+          ),
+          backgroundColor: Colors.white,
+          foregroundColor: Colors.black,
+        ),
+        drawer: Drawer(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  const Text(
-                    'Lleva picante',
-                    style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.black),
-                  ),
-                  Switch(
-                    value: isSpicy,
-                    onChanged: (value) {
-                      setState(() {
-                        isSpicy = value;
-                      });
-                    },
-                  ),
-                ],
+              const DrawerHeader(
+                child: Text('Filtros'),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  const Text('Es rapido de hacer',
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.black)),
-                  Switch(
-                    value: isFast,
-                    onChanged: (value) {
-                      setState(() {
-                        isFast = value;
-                      });
-                    },
-                  ),
-                ],
+              ListTile(
+                title: Text('Picante'),
+                trailing: Checkbox(
+                  value: isSpicy,
+                  onChanged: (value) {
+                    setState(() {
+                      isSpicy = value ?? false;
+                    });
+                  },
+                ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  const Text('Es barato',
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.black)),
-                  Switch(
-                    value: isCheap,
-                    onChanged: (value) {
-                      setState(() {
-                        isCheap = value;
-                      });
-                    },
-                  ),
-                ],
+              ListTile(
+                title: Text('Barato'),
+                trailing: Checkbox(
+                  value: isCheap,
+                  onChanged: (value) {
+                    setState(() {
+                      isCheap = value ?? false;
+                    });
+                  },
+                ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  const Text('Es fácil de hacer',
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.black)),
-                  Switch(
-                    value: isSimple,
-                    onChanged: (value) {
-                      setState(() {
-                        isSimple = value;
-                      });
-                    },
-                  ),
-                ],
+              ListTile(
+                title: Text('Simple'),
+                trailing: Checkbox(
+                  value: isSimple,
+                  onChanged: (value) {
+                    setState(() {
+                      isSimple = value ?? false;
+                    });
+                  },
+                ),
+              ),
+              ListTile(
+                title: Text('Rápido'),
+                trailing: Checkbox(
+                  value: isFast,
+                  onChanged: (value) {
+                    setState(() {
+                      isFast = value ?? false;
+                    });
+                  },
+                ),
               ),
             ],
           ),
         ),
-      ),
-    );
+        body: anyFilterOn
+            ? GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 2 / 2,
+                    crossAxisSpacing: 12,
+                    mainAxisSpacing: 12),
+                padding: const EdgeInsets.all(12),
+                itemCount: _filteredMeals().length,
+                itemBuilder: (context, index) {
+                  final meal = _filteredMeals()[index];
+                  return TextButton(
+                    onPressed: () {
+                      mealId = meal.id;
+                      mealIx =
+                          meals.indexWhere((element) => element.id == mealId);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                MealDetailScreenView(mealIndex: mealIx)),
+                      );
+                    },
+                    child: Container(
+                      decoration: minimalistDecoration,
+                      child: Stack(
+                        children: [
+                          Opacity(
+                              opacity: 0.8,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(12),
+                                child: Image.asset(
+                                  meal.imageUrl!,
+                                ),
+                              )),
+                          Center(
+                            child: Container(
+                                padding: const EdgeInsets.all(2),
+                                decoration: BoxDecoration(
+                                    color: Colors.black54,
+                                    borderRadius: BorderRadius.circular(8)),
+                                child: Text(
+                                  meal.title!,
+                                  style: const TextStyle(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.white),
+                                )),
+                          )
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              )
+            : Center(
+                child:
+                    Text('Seleccione los filtros en el menu de la izquierda'),
+              ));
   }
 }
