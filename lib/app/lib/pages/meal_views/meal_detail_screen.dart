@@ -1,4 +1,6 @@
 import 'package:cocina_coreana/app/lib/domain/data/meals_data.dart';
+import 'package:cocina_coreana/app/lib/pages/home_page.dart';
+import 'package:cocina_coreana/app/lib/pages/main_views/favorites_view.dart';
 import 'package:cocina_coreana/app/lib/widgets/minimalist_decoration_widget/minimalist_decoration_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -66,6 +68,11 @@ class _MealDetailScreenViewState extends State<MealDetailScreenView> {
               final mealId = meals[widget.mealIndex].id!;
               if (favoriteMeals.contains(mealId)) {
                 favoriteMeals.remove(mealId);
+                saveFavoritesList(favoriteMeals);
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HomePage()),
+                );
               }
             }
             saveFavoritesList(favoriteMeals);

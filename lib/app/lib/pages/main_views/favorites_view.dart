@@ -75,7 +75,7 @@ class _FavoritesViewState extends State<FavoritesView> {
                     mealIdx = meal.id!;
                     mealIx =
                         meals.indexWhere((element) => element.id == mealId);
-                    Navigator.pushReplacement(
+                    Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) =>

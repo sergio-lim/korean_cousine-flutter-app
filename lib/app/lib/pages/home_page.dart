@@ -16,21 +16,22 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   PageController controller = PageController(initialPage: 1);
   bool onLastPage = false;
-  List homeIndex = ['Filtros', 'Categorias', 'Favoritos'];
+  List homeIndex = ['Filtros', 'Categorías', 'Favoritos'];
   int currentIndex = 1;
   @override
   Widget build(BuildContext context) {
-    return DoubleBackToCloseApp(
-      snackBar: const SnackBar(content: Text('Toca dos veces para salir')),
-      child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.white,
-            title: Text(
-              homeIndex[currentIndex],
-              style: const TextStyle(color: Colors.black),
-            ),
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          foregroundColor: Colors.black,
+          title: Text(
+            homeIndex[currentIndex],
+            style: const TextStyle(color: Colors.black),
           ),
-          body:
+        ),
+        body: DoubleBackToCloseApp(
+          snackBar: const SnackBar(content: Text('Toca dos veces para salir')),
+          child:
               OrientationBuilder(builder: (BuildContext context, orientation) {
             return Stack(
               children: [
@@ -72,7 +73,7 @@ class _HomePageState extends State<HomePage> {
                     )),
               ],
             );
-          })),
-    );
+          }),
+        ));
   }
 }
