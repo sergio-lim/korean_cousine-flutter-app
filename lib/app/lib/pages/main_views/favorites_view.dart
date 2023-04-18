@@ -46,7 +46,10 @@ class _FavoritesViewState extends State<FavoritesView> {
                   const FittedBox(
                     child: Text(
                       'Añade favoritos para que aparezcan aquí',
-                      style: TextStyle(fontSize: 22),
+                      style: TextStyle(
+                          fontSize: 22,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w700),
                     ),
                   ),
                   LottieBuilder.asset(

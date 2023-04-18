@@ -55,12 +55,18 @@ class _MealDetailScreenViewState extends State<MealDetailScreenView> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(() {
-            if (isFavorite == false) {
+            if (!isFavorite) {
               isFavorite = true;
-              favoriteMeals.add(meals[widget.mealIndex].id!);
+              final mealId = meals[widget.mealIndex].id!;
+              if (!favoriteMeals.contains(mealId)) {
+                favoriteMeals.add(mealId);
+              }
             } else {
               isFavorite = false;
-              favoriteMeals.remove(meals[widget.mealIndex].id!);
+              final mealId = meals[widget.mealIndex].id!;
+              if (favoriteMeals.contains(mealId)) {
+                favoriteMeals.remove(mealId);
+              }
             }
             saveFavoritesList(favoriteMeals);
           });

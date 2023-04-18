@@ -29,7 +29,13 @@ class _FiltersViewState extends State<FiltersView> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  const Text('Lleva picante'),
+                  const Text(
+                    'Lleva picante',
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.black),
+                  ),
                   Switch(
                     value: isSpicy,
                     onChanged: (value) {
@@ -43,7 +49,11 @@ class _FiltersViewState extends State<FiltersView> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  const Text('Es rapido de hacer'),
+                  const Text('Es rapido de hacer',
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.black)),
                   Switch(
                     value: isFast,
                     onChanged: (value) {
@@ -57,7 +67,11 @@ class _FiltersViewState extends State<FiltersView> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  const Text('Es barato'),
+                  const Text('Es barato',
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.black)),
                   Switch(
                     value: isCheap,
                     onChanged: (value) {
@@ -71,7 +85,11 @@ class _FiltersViewState extends State<FiltersView> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  const Text('Es fácil de hacer'),
+                  const Text('Es fácil de hacer',
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.black)),
                   Switch(
                     value: isSimple,
                     onChanged: (value) {
