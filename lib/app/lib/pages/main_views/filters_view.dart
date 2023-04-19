@@ -3,6 +3,7 @@ import 'package:cocina_coreana/app/lib/domain/models/meal.dart';
 import 'package:cocina_coreana/app/lib/pages/meal_views/meal_detail_screen.dart';
 import 'package:cocina_coreana/app/lib/widgets/minimalist_decoration_widget/minimalist_decoration_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class FiltersView extends StatefulWidget {
   const FiltersView({super.key});
@@ -152,8 +153,19 @@ class _FiltersViewState extends State<FiltersView> {
                 },
               )
             : Center(
-                child:
-                    Text('Seleccione los filtros en el menu de la izquierda'),
+                child: Column(
+                  children: [
+                    const FittedBox(
+                        child: Text(
+                      'Seleccione los filtros en el menu de la izquierda',
+                      style: TextStyle(fontSize: 22),
+                    )),
+                    LottieBuilder.asset(
+                      'assets/animations/filters.zip',
+                      height: MediaQuery.of(context).size.height * 0.5,
+                    ),
+                  ],
+                ),
               ));
   }
 }

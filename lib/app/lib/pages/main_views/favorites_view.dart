@@ -114,16 +114,7 @@ class _FavoritesViewState extends State<FavoritesView> {
                 );
               },
             ),
-      // : Center(
-      //     child: ListView(
-      //       children: [
-      //         for (var item in favoriteMeals)
-      //           ListTile(
-      //             title: Text(item),
-      //           ),
-      //       ],
-      //     ),
-      //   ),
+      
     );
   }
 
