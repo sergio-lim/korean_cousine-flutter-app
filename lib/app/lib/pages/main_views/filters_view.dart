@@ -51,7 +51,7 @@ class _FiltersViewState extends State<FiltersView> {
                 child: Text('Filtros'),
               ),
               ListTile(
-                title: Text('Picante'),
+                title: const Text('Picante'),
                 trailing: Checkbox(
                   value: isSpicy,
                   onChanged: (value) {
@@ -62,7 +62,7 @@ class _FiltersViewState extends State<FiltersView> {
                 ),
               ),
               ListTile(
-                title: Text('Barato'),
+                title: const Text('Barato'),
                 trailing: Checkbox(
                   value: isCheap,
                   onChanged: (value) {
@@ -73,7 +73,7 @@ class _FiltersViewState extends State<FiltersView> {
                 ),
               ),
               ListTile(
-                title: Text('Simple'),
+                title: const Text('Simple'),
                 trailing: Checkbox(
                   value: isSimple,
                   onChanged: (value) {
@@ -84,7 +84,7 @@ class _FiltersViewState extends State<FiltersView> {
                 ),
               ),
               ListTile(
-                title: Text('Rápido'),
+                title: const Text('Rápido'),
                 trailing: Checkbox(
                   value: isFast,
                   onChanged: (value) {
@@ -154,13 +154,19 @@ class _FiltersViewState extends State<FiltersView> {
               )
             : Center(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     const FittedBox(
                         child: Text(
                       'Seleccione los filtros en el menu de la izquierda',
-                      style: TextStyle(fontSize: 22),
+                      style: TextStyle(
+                          fontSize: 22,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w700),
                     )),
                     LottieBuilder.asset(
+                      controller: null,
+                      repeat: false,
                       'assets/animations/filters.zip',
                       height: MediaQuery.of(context).size.height * 0.5,
                     ),

@@ -114,7 +114,6 @@ class _FavoritesViewState extends State<FavoritesView> {
                 );
               },
             ),
-      
     );
   }
 
