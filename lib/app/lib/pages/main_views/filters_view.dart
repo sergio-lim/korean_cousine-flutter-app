@@ -158,7 +158,7 @@ class _FiltersViewState extends State<FiltersView> {
                   children: [
                     const FittedBox(
                         child: Text(
-                      'Seleccione los filtros en el menu de la izquierda',
+                      'Seleccione los filtros en el menú de la izquierda',
                       style: TextStyle(
                           fontSize: 22,
                           color: Colors.black,
