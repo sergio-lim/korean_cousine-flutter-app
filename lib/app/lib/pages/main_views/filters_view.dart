@@ -153,24 +153,27 @@ class _FiltersViewState extends State<FiltersView> {
                 },
               )
             : Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    const FittedBox(
-                        child: Text(
-                      'Seleccione los filtros en el menú de la izquierda',
-                      style: TextStyle(
-                          fontSize: 22,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w700),
-                    )),
-                    LottieBuilder.asset(
-                      controller: null,
-                      repeat: false,
-                      'assets/animations/filters.zip',
-                      height: MediaQuery.of(context).size.height * 0.5,
-                    ),
-                  ],
+                child: Container(
+                  margin: const EdgeInsets.all(12),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      const FittedBox(
+                          child: Text(
+                        'Seleccione los filtros en el menú de la izquierda',
+                        style: TextStyle(
+                            fontSize: 22,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w700),
+                      )),
+                      LottieBuilder.asset(
+                        controller: null,
+                        repeat: false,
+                        'assets/animations/filters.zip',
+                        height: MediaQuery.of(context).size.height * 0.5,
+                      ),
+                    ],
+                  ),
                 ),
               ));
   }
